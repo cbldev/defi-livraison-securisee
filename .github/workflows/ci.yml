@@ -27,9 +27,10 @@ jobs:
       - name: Vérifier le paramètre de livraison
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         env:
-          RELEASE_TOKEN: demonstration-jeton-inactif-atelier
+          RELEASE_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         run: |
           if [ -z "${RELEASE_TOKEN:-}" ]; then
             echo "::error::Le jeton de démonstration est absent."
             exit 1
           fi
+
